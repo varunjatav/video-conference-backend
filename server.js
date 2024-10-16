@@ -55,15 +55,15 @@ app.use(error);
 
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-app.use("/api/user",updateRouter);
-app.use("/api/meetings", meatingRouter);
-app.use("/api/user", SignUpRouter);
-app.use("/api/user", LoginRouter);
-app.use("/api/user", DeleteUserRouter);
-app.use("/api/user", GetUserRouter);
-app.use("/api/user", GetSingleUserRouter);
-app.use("/api/user",forgotPassword);
-app.use("/api/user",resetPassword);
+app.use("/user",updateRouter);
+app.use("/meetings", meatingRouter);
+app.use("/user", SignUpRouter);
+app.use("/user", LoginRouter);
+app.use("/user", DeleteUserRouter);
+app.use("/user", GetUserRouter);
+app.use("/user", GetSingleUserRouter);
+app.use("/user",forgotPassword);
+app.use("/user",resetPassword);
 
 app.listen(PORT, () => {
   console.log("listening on PORT " + PORT);
