@@ -30,7 +30,7 @@ jobs:
 
     - name: Set Up Self-Signed HTTPS
       run: |
-        ssh -o StrictHostKeyChecking=no ubuntu@your-ec2-ip << 'EOF'
+        ssh -o StrictHostKeyChecking=no ubuntu@3.23.88.41 << 'EOF'
           # Create a directory for the SSL certificate files
           sudo mkdir -p /etc/ssl/self-signed
 
@@ -38,7 +38,7 @@ jobs:
           sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
             -keyout /etc/ssl/self-signed/selfsigned.key \
             -out /etc/ssl/self-signed/selfsigned.crt \
-            -subj "/CN=your-ec2-public-ip"
+            -subj "/CN=3.23.88.41"
 
           # Ensure PM2 restarts your application with HTTPS settings
           sudo pm2 restart server.js
