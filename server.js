@@ -23,7 +23,7 @@ app.use(cors());
 
 const server = http.createServer(app);
 const io = socketIO(server, {
-  cors: { origin: "http://127.0.0.1/:5173" },
+  cors: { origin: "https://varunjatav.github.io/video-conference-frontend/" },
 });
 // console.log(io.on());
 
