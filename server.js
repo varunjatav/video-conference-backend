@@ -21,13 +21,9 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-const options = {
-  key: fs.readFileSync('/etc/ssl/self-signed/selfsigned.key'),
-  cert: fs.readFileSync('/etc/ssl/self-signed/selfsigned.crt')
-};
 
 
-const server = http.createServer(options,app);
+const server = http.createServer(app);
 const io = socketIO(server, {
   cors: { origin: "https://varunjatav.github.io/video-conference-frontend/" },
 });
