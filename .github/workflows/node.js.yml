@@ -27,3 +27,19 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
     - run: pm2 restart server.js
+
+    - name: Set Up Self-Signed HTTPS
+      run: |
+        ssh -o StrictHostKeyChecking=no ubuntu@your-ec2-ip << 'EOF'
+          # Create a directory for the SSL certificate files
+          sudo mkdir -p /etc/ssl/self-signed
+
+          # Generate a self-signed SSL certificate
+          sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
+            -keyout /etc/ssl/self-signed/selfsigned.key \
+            -out /etc/ssl/self-signed/selfsigned.crt \
+            -subj "/CN=your-ec2-public-ip"
+
+          # Ensure PM2 restarts your application with HTTPS settings
+          sudo pm2 restart server.js
+        EOF
